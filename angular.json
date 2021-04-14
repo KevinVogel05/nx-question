@@ -1,0 +1,173 @@
+{
+  "version": 1,
+  "cli": {
+    "defaultCollection": "@nrwl/angular"
+  },
+  "defaultProject": "hero",
+  "schematics": {
+    "@nrwl/workspace": {
+      "library": {
+        "linter": "tslint"
+      }
+    },
+    "@nrwl/cypress": {
+      "cypress-project": {
+        "linter": "tslint"
+      }
+    },
+    "@nrwl/node": {
+      "application": {
+        "linter": "tslint"
+      },
+      "library": {
+        "linter": "tslint"
+      }
+    },
+    "@nrwl/nest": {
+      "application": {
+        "linter": "tslint"
+      },
+      "library": {
+        "linter": "tslint"
+      }
+    },
+    "@nrwl/express": {
+      "application": {
+        "linter": "tslint"
+      },
+      "library": {
+        "linter": "tslint"
+      }
+    },
+    "@nrwl/angular:application": {
+      "style": "scss",
+      "linter": "tslint",
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "style": "scss",
+      "linter": "tslint",
+      "unitTestRunner": "jest"
+    },
+    "@nrwl/angular:component": {
+      "style": "scss"
+    }
+  },
+  "projects": {
+    "hero": {
+      "projectType": "application",
+      "root": "apps/hero",
+      "sourceRoot": "apps/hero/src",
+      "prefix": "question",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/hero",
+            "index": "apps/hero/src/index.html",
+            "main": "apps/hero/src/main.ts",
+            "polyfills": "apps/hero/src/polyfills.ts",
+            "tsConfig": "apps/hero/tsconfig.app.json",
+            "aot": true,
+            "assets": ["apps/hero/src/favicon.ico", "apps/hero/src/assets"],
+            "styles": ["apps/hero/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/hero/src/environments/environment.ts",
+                  "with": "apps/hero/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "hero:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "hero:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "hero:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/hero/tsconfig.app.json",
+              "apps/hero/tsconfig.spec.json",
+              "apps/hero/tsconfig.editor.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/hero/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/hero"],
+          "options": {
+            "jestConfig": "apps/hero/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "hero-e2e": {
+      "root": "apps/hero-e2e",
+      "sourceRoot": "apps/hero-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/hero-e2e/cypress.json",
+            "tsConfig": "apps/hero-e2e/tsconfig.e2e.json",
+            "devServerTarget": "hero:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "hero:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["apps/hero-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/hero-e2e/**/*"]
+          }
+        }
+      }
+    }
+  }
+}
