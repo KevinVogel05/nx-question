@@ -1,0 +1,104 @@
+@import '../../../styles';
+.hero {
+    background-color: #6e00ff;
+    color: white;
+    display: grid;
+    text-align: center;
+    padding: 4em;
+    height: 100vh;
+    @include mq(large) {
+        height: 100vh;
+        display: grid;
+        grid-template-columns: 66% auto;
+        background: unset;
+        padding: 0;
+        .content {
+            background: #6e00ff;
+            padding: 6em 8em 6em 4em;
+            text-align: left;
+            h1 {
+                font-size: 3em;
+                line-height: 1.2em;
+            }
+        }
+    }
+    @include mq(xlarge) {
+        .content {
+            padding: 6em 8em 6em 10em;
+        }
+    }
+    @include mq(xxlarge) {
+        .content {
+            padding: 9em 20em 6em 20em;
+        }
+    }
+}
+
+.hero-design {
+    display: none;
+    @include mq(large) {
+        display: unset;
+        margin-left: -50%;
+        margin-top: 15%;
+        width: 100%;
+        z-index: 3;
+    }
+}
+
+.meet {
+    display: flex;
+    margin: 0 auto;
+    width: 250px;
+    font-weight: bold;
+    color: #ff64cb;
+    span {
+        margin-top: 1em;
+        margin-right: .5em;
+    }
+    @include mq(large) {
+        margin: unset;
+    }
+}
+
+.scroll {
+    width: 30px;
+    margin-top: 2em;
+}
+
+.circle {
+    animation: circleAnim 1s infinite alternate-reverse;
+}
+
+@keyframes circleAnim {
+    from {
+        transform: translate(0px, 0px);
+        z-index: 5;
+    }
+    to {
+        transform: translate(0px, 50px);
+    }
+}
+
+.lets-get-started {
+    display: inline-block;
+    padding: 0.5em 3em;
+    border: 0.16em solid #FFFFFF;
+    border-radius: 2em;
+    margin: 5em 0.3em 0.3em 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    color: #FFFFFF;
+    text-align: center;
+    transition: all 0.15s;
+    &:hover {
+        color: #DDDDDD;
+        border-color: #DDDDDD;
+    }
+    &:active {
+        color: #BBBBBB;
+        border-color: #BBBBBB;
+    }
+}

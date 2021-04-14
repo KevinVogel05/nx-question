@@ -1,0 +1,9 @@
+<div class="container">
+    <div class="content">
+        <h1>Welcome to Questions that will change your life!</h1>
+        <p>Let's start with something simple.</p>
+
+        <router-outlet></router-outlet>
+        <a *ngIf="showMe" (click)="hide()" class="lets-get-started" routerLink="1">Start</a>
+    </div>
+</div>

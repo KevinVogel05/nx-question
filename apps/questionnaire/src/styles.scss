@@ -1,0 +1,144 @@
+/* You can add global styles to this file, and also import other style files */
+
+@use 'sass:map';
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap');
+body {
+    height: 100vh;
+    margin: 0;
+    font-family: 'Poppins', 'Calibri';
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+img {
+    width: 100%;
+}
+
+.container {
+    height: fill;
+    display: grid;
+    grid-template-columns: 80% auto;
+    background: unset;
+    background-color: #6e00ff;
+    color: white;
+    text-align: center;
+    padding: 6em;
+    .content {
+        background: #6e00ff;
+        padding: 6em 8em 6em 4em;
+        text-align: left;
+        h1 {
+            font-size: 3em;
+            line-height: 1.2em;
+        }
+    }
+}
+
+.questions {
+    margin-top: 5em;
+}
+
+input {
+    width: 60%;
+    font-size: 24px;
+    background-color: #ffffff2a;
+    color: white;
+    border: none;
+    &:focus {
+        background-color: #ff64cb;
+        border: none;
+    }
+    &[type=radio] {
+        width: auto;
+    }
+}
+
+select {
+    width: 60%;
+    font-size: 24px;
+    background-color: #ffffff2a;
+    color: white;
+    border: none;
+    &:focus {
+        color: #ff64cb;
+    }
+}
+
+.lets-get-started {
+    display: inline-block;
+    padding: 0.5em 3em;
+    border: 0.16em solid #FFFFFF;
+    border-radius: 2em;
+    margin: 5em 0.3em 0.3em 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    color: #FFFFFF;
+    text-align: center;
+    transition: all 0.15s;
+    &:hover {
+        color: #DDDDDD;
+        border-color: #DDDDDD;
+    }
+    &:active {
+        color: #BBBBBB;
+        border-color: #BBBBBB;
+    }
+}
+
+p {
+    margin-bottom: 0;
+}
+
+.arrow {
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+    margin-left: 10px;
+}
+
+.right {
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+}
+
+.left {
+    transform: rotate(135deg);
+    -webkit-transform: rotate(135deg);
+}
+
+.arrow {
+    animation: arrowRightAnim 1s infinite alternate-reverse;
+}
+
+@keyframes arrowRightAnim {
+    from {
+        transform: translate(5px, 0px), rotate(-45deg);
+        z-index: 5;
+    }
+    to {
+        transform: translate(20px, 0px);
+    }
+}
+
+$breakpoints: ( medium: 800px,
+large: 1050px,
+xlarge: 1250px,
+xxlarge: 1550px);
+@mixin mq($key) {
+    $size: map.get($breakpoints, $key);
+    @media only screen and (min-width: $size) {
+        @content;
+    }
+}

@@ -1,0 +1,9 @@
+<div class="container">
+    <div class="content">
+        <h1>Welcome to the second set of Questions!</h1>
+        <p>In this section you will have to answer multiple choice questions.</p>
+
+        <router-outlet></router-outlet>
+        <a *ngIf="showMe" (click)="hide()" class="lets-get-started" routerLink="1">Start</a>
+    </div>
+</div>
