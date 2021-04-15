@@ -4,7 +4,7 @@
     <p>What do you hate?</p>
     <input type="text" #hate>
     <p>What do you do as an job?</p>
-    <input type="text" #interests>
+    <input type="text" #job>
 </div>
 
-<a class="lets-get-started" routerLink="../../second">Go to the next set of questions<i class="arrow right"></i></a>
+<a (click)=onNext(interests.value) (click)=onNext2(hate.value) (click)=onNext3(job.value) class="lets-get-started" routerLink="../../second">Go to the next set of questions<i class="arrow right"></i></a>

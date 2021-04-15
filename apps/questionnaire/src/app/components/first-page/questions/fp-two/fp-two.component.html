@@ -1,6 +1,5 @@
 <div class="questions">
     <p>How old are you?</p>
-    <input type="text" #age>
+    <input #age type="text">
 </div>
-
-<a class="lets-get-started" routerLink="../3">Next<i class="arrow right"></i></a>
+<a (click)=onNext(age.value) class="lets-get-started" routerLink="../3">Next<i class="arrow right"></i></a>

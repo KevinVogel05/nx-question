@@ -1,6 +1,6 @@
 <div class="questions">
     <p>What is your favourite color?</p>
-    <select>
+    <select #fav>
       <option>Red</option>
       <option>Blue</option>
       <option>Green</option>
@@ -9,4 +9,4 @@
   </select>
 </div>
 
-<a class="lets-get-started" routerLink="../2">Next<i class="arrow right"></i></a>
+<a (click)=onNext(fav.value) class="lets-get-started" routerLink="../2">Next<i class="arrow right"></i></a>

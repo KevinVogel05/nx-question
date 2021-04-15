@@ -1,3 +1,4 @@
+import { DataService } from './../../../../services/data.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FpTwoComponent implements OnInit {
 
-  constructor() { }
+  public age: number;
+
+  constructor(public data: DataService) { }
 
   ngOnInit(): void {
+    //this.data.currentAge$$.subscribe(input => this.age = input);
   }
 
+  onNext(userAge){
+    this.age = userAge;
+    this.data.changeAge(this.age);
+  }
 }

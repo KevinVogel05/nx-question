@@ -1,3 +1,5 @@
+import { DataService } from './../../services/data.service';
+import { SharedModule } from './../shared/shared.module';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
@@ -19,6 +21,7 @@ import { FpThreeComponent } from './questions/fp-three/fp-three.component';
   imports: [
     CommonModule,
     FormsModule,
+    SharedModule,
     RouterModule.forChild([
       {
         path: '',

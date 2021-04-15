@@ -1,5 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { DataService } from './../../services/data.service';
+import { FirstPageModule } from './../first-page/first-page.module';
+import { FpOneComponent } from './../first-page/questions/fp-one/fp-one.component';
+import { SharedComponent } from './../shared/shared.component';
+import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';
 import { Answers } from '../../models/answer.model';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'question-question-container',
@@ -9,18 +14,30 @@ import { Answers } from '../../models/answer.model';
 
 export class QuestionContainerComponent implements OnInit {
 
+
   sample: Answers = {
     name: 'Kevin Vogel',
-    age: 26,
+    age: 56,
     intrests: 'nicht einhörner',
     hates: 'everything',
-    job: 'obdachlos',
+    job: 'Maurer',
     color: 'Black',
     gender: 'Male',
     like: true
   };
 
-  constructor() { }
+  userInput: Answers = {
+    name: '',
+    age: null,
+    intrests: '',
+    hates: '',
+    job: '',
+    color: '',
+    gender: '',
+    like: null
+  };
+
+  constructor(public data: DataService) { }
 
   ngOnInit(): void {
   }

@@ -1,3 +1,4 @@
+import { DataService } from './../../../../services/data.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SpOneComponent implements OnInit {
 
-  constructor() { }
+  public fav: string;
+
+  constructor(public data: DataService) { }
 
   ngOnInit(): void {
+  }
+
+  onNext(userFav){
+    this.fav = userFav;
+    this.data.changeFav(this.fav);
   }
 
 }

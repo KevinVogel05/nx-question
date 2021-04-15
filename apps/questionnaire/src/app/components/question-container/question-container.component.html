@@ -3,14 +3,14 @@
         <h1>Finalize Your Answers</h1>
         <p>Make sure everything is order.</p>
         <div class="final-answers">
-            <p>Name: {{ sample.name }}</p>
-            <p>Age: {{ sample.age }}</p>
-            <p>Interests: {{ sample.intrests }}</p>
-            <p>Hates: {{ sample.hates }}</p>
-            <p>Job: {{ sample.job }}</p>
-            <p>Favourite Color: {{ sample.color }}</p>
-            <p>Gender: {{ sample.gender }}</p>
-            <p>Finds the Survey super cool: {{ sample.like }}</p>
+            <p>Name: {{ data.currentName$$ | async }}</p>
+            <p>Age: {{ data.currentAge$$ | async }}</p>
+            <p>Interests: {{ data.currentInterests$$ | async }}</p>
+            <p>Hates: {{ data.currentHate$$ | async }}</p>
+            <p>Job: {{ data.currentJob$$ | async }}</p>
+            <p>Favourite Color: {{ data.currentFav$$ | async }}</p>
+            <p>Gender: {{ data.currentGender$$ | async }}</p>
+            <p>Finds the Survey super cool: {{ data.currentLike$$ | async }}</p>
         </div>
         <a class="lets-get-started" routerLink="/">Submit</a>
     </div>

@@ -23,7 +23,7 @@ img {
 }
 
 .container {
-    height: fill;
+    height: stretch;
     display: grid;
     grid-template-columns: 80% auto;
     background: unset;

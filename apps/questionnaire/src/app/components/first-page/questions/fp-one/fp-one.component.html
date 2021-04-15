@@ -1,6 +1,5 @@
 <div class="questions">
     <p>How about you telling me your Name?</p>
-    <input type="text" #name>
+    <input #name type="text">
 </div>
-
-<a class="lets-get-started" routerLink="../2">Next<i class="arrow right"></i></a>
+<a (click)=onNext(name.value) class="lets-get-started" routerLink="../2">Next<i class="arrow right"></i></a>

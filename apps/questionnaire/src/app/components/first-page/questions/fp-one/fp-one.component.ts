@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { DataService } from './../../../../services/data.service';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+
 
 @Component({
   selector: 'question-fp-one',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FpOneComponent implements OnInit {
 
-  constructor() { }
+  public name: string;
+
+  constructor(public data: DataService) { }
 
   ngOnInit(): void {
+    //this.data.currentName$$.subscribe(input => this.name = input);
   }
 
+  onNext(userName){
+    this.name = userName;
+    this.data.changeName(this.name);
+  }
 }
