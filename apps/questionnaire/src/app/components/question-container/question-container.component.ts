@@ -1,10 +1,9 @@
+import { QuestionAppState } from './../../+state/question.reducer';
 import { DataService } from './../../services/data.service';
-import { FirstPageModule } from './../first-page/first-page.module';
-import { FpOneComponent } from './../first-page/questions/fp-one/fp-one.component';
-import { SharedComponent } from './../shared/shared.component';
 import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';
 import { Answers } from '../../models/answer.model';
-import { Observable, Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'question-question-container',
@@ -13,18 +12,6 @@ import { Observable, Subscription } from 'rxjs';
 })
 
 export class QuestionContainerComponent implements OnInit {
-
-
-  sample: Answers = {
-    name: 'Kevin Vogel',
-    age: 56,
-    intrests: 'nicht einhörner',
-    hates: 'everything',
-    job: 'Maurer',
-    color: 'Black',
-    gender: 'Male',
-    like: true
-  };
 
   userInput: Answers = {
     name: '',
@@ -37,9 +24,12 @@ export class QuestionContainerComponent implements OnInit {
     like: null
   };
 
-  constructor(public data: DataService) { }
+  answers$: Observable<Answers>
+
+  constructor(public data: DataService, private store: Store<QuestionAppState>) { }
 
   ngOnInit(): void {
+    this.answers$ = this.store.select(s => s.answers.answers);
   }
 
 }

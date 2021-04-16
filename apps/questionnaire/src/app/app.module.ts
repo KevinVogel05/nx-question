@@ -1,29 +1,26 @@
-import { DataService } from './services/data.service';
-import { SharedModule } from './components/shared/shared.module';
-
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { RadioButtonComponent } from './components/radio-button/radio-button.component';
-import { DropDownComponent } from './components/drop-down/drop-down.component';
-import { TextFieldComponent } from './components/text-field/text-field.component';
 import { QuestionContainerComponent } from './components/question-container/question-container.component';
 import { HeroComponent } from './components/hero/hero.component';
+import { StoreModule } from '@ngrx/store';
+import { reducers, metaReducers } from './+state';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
+import { EffectsModule } from '@ngrx/effects';
+import * as fromQuestion from './+state/question.reducer';
+import { QuestionEffects } from './+state/question.effects';
 
 @NgModule({
   declarations: [
     AppComponent,
-    RadioButtonComponent,
-    DropDownComponent,
-    TextFieldComponent,
     QuestionContainerComponent,
     HeroComponent,
   ],
   imports: [
     BrowserModule,
-    SharedModule,
     RouterModule.forRoot([
       {
         path: '',
@@ -43,7 +40,12 @@ import { HeroComponent } from './components/hero/hero.component';
         path: 'final',
         component: QuestionContainerComponent
       },
-    ])
+    ]),
+    StoreModule.forRoot(reducers, { metaReducers }),
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
+    EffectsModule.forRoot([]),
+    StoreModule.forFeature(fromQuestion.questionFeatureKey, fromQuestion.reducer),
+    EffectsModule.forFeature([QuestionEffects])
   ],
   providers: [],
   bootstrap: [AppComponent],

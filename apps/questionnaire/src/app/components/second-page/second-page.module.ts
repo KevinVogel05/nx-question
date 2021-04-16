@@ -1,4 +1,3 @@
-import { SharedModule } from './../shared/shared.module';
 
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
@@ -21,7 +20,6 @@ import { SecondPageComponent } from './second-page.component';
   imports: [
     CommonModule,
     FormsModule,
-    SharedModule,
     RouterModule.forChild([
       {
         path: '',

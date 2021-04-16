@@ -58,4 +58,9 @@ export class DataService {
   changeLike(input: boolean){
     this.userLike$$.next(input);
   }
+
+  //Store
+  loadAnswers(){
+
+  }
 }

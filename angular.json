@@ -1,7 +1,7 @@
 {
   "version": 1,
   "cli": {
-    "defaultCollection": "@nrwl/angular"
+    "defaultCollection": "@ngrx/schematics"
   },
   "defaultProject": "hero",
   "schematics": {
@@ -70,8 +70,13 @@
             "polyfills": "apps/hero/src/polyfills.ts",
             "tsConfig": "apps/hero/tsconfig.app.json",
             "aot": true,
-            "assets": ["apps/hero/src/favicon.ico", "apps/hero/src/assets"],
-            "styles": ["apps/hero/src/styles.scss"],
+            "assets": [
+              "apps/hero/src/favicon.ico",
+              "apps/hero/src/assets"
+            ],
+            "styles": [
+              "apps/hero/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -129,12 +134,17 @@
               "apps/hero/tsconfig.spec.json",
               "apps/hero/tsconfig.editor.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/hero/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/hero/**/*"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/hero"],
+          "outputs": [
+            "coverage/apps/hero"
+          ],
           "options": {
             "jestConfig": "apps/hero/jest.config.js",
             "passWithNoTests": true
@@ -163,8 +173,13 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/hero-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/hero-e2e/**/*"]
+            "tsConfig": [
+              "apps/hero-e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/hero-e2e/**/*"
+            ]
           }
         }
       }
@@ -188,7 +203,9 @@
               "apps/questionnaire/src/favicon.ico",
               "apps/questionnaire/src/assets"
             ],
-            "styles": ["apps/questionnaire/src/styles.scss"],
+            "styles": [
+              "apps/questionnaire/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -246,12 +263,17 @@
               "apps/questionnaire/tsconfig.spec.json",
               "apps/questionnaire/tsconfig.editor.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/questionnaire/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/questionnaire/**/*"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/questionnaire"],
+          "outputs": [
+            "coverage/apps/questionnaire"
+          ],
           "options": {
             "jestConfig": "apps/questionnaire/jest.config.js",
             "passWithNoTests": true
@@ -280,8 +302,13 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/questionnaire-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/questionnaire-e2e/**/*"]
+            "tsConfig": [
+              "apps/questionnaire-e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/questionnaire-e2e/**/*"
+            ]
           }
         }
       }
