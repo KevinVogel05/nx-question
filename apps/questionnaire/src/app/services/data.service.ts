@@ -59,12 +59,6 @@ export class DataService {
     this.userLike$$.next(input);
   }
 
-
-  //get Values
-  getName(){
-    return this.userName$$.value;
-  }
-
   //Store
   loadAnswers(){
 

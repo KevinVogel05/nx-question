@@ -17,9 +17,7 @@ import { Observable, ReplaySubject } from 'rxjs';
 export class FpTwoComponent implements OnInit {
 
   age: number;
-  name: string;
   question: any;
-
   answers$: Observable<any>
 
   // private answers: Observable<Answers>;

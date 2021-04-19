@@ -14,6 +14,6 @@
 
             <p>Store data {{ answers$ | async | json}}</p>
         </div>
-        <a class="lets-get-started" routerLink="/">Submit</a>
+        <a (click)="onSubmit()" class="lets-get-started" routerLink="/">Submit</a>
     </div>
 </div>
