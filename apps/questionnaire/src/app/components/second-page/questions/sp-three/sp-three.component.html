@@ -1,5 +1,5 @@
 <div class="questions">
-    <p>Did you like the Survey?</p>
+    <p>{{ question.question }}</p>
     <div *ngFor="let like of likeChoice">
         <input type="radio" name="like" value="{{like}}" (change)="likeSelected($event)">
         <i>{{like}}</i>

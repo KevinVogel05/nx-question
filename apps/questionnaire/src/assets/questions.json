@@ -1,0 +1,35 @@
+{
+    "questions": [{
+            "id": "1",
+            "question": "What is your Name"
+        },
+        {
+            "id": "2",
+            "question": "How old are you?"
+        },
+        {
+            "id": "3",
+            "question": "What intrests you?"
+        },
+        {
+            "id": "4",
+            "question": "What do you hate?"
+        },
+        {
+            "id": "5",
+            "question": "What is your job?"
+        },
+        {
+            "id": "6",
+            "question": "What is your favourite color?"
+        },
+        {
+            "id": "7",
+            "question": "What are you?"
+        },
+        {
+            "id": "8",
+            "question": "Did you like the Survey?"
+        }
+    ]
+}

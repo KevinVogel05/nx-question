@@ -1,5 +1,5 @@
 <div class="questions">
-    <p>How about you telling me your Name?</p>
+    <p>{{ question.question }}</p>
     <input #name type="text">
 </div>
 <a (click)=onNext(name.value) class="lets-get-started" routerLink="../2">Next<i class="arrow right"></i></a>

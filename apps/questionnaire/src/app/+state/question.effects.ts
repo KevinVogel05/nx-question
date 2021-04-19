@@ -12,14 +12,6 @@ import * as QuestionActions from './question.actions';
 export class QuestionEffects {
 
 
-  // loadQuestions = createEffect(() =>
-  //   this.actions$.pipe(
-  //   ofType(this.loadQuestions),
-  //   switchMap(q => this.data.loadAnswers().pipe(
-  //     map(question => {
-  //       return QuestionActions.loadQuestions({question})
-  //     })))));
-
   constructor(private actions$: Actions, private data: DataService) {}
 
 }

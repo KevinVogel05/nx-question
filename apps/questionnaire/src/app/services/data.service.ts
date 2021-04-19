@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root'
-}
+@Injectable(
+  //{ providedIn: 'root' }
 )
 export class DataService {
 
+  //declared Observables
   private userName$$ = new BehaviorSubject<string>('');
   currentName$$ = this.userName$$.asObservable();
 
@@ -57,6 +57,12 @@ export class DataService {
   }
   changeLike(input: boolean){
     this.userLike$$.next(input);
+  }
+
+
+  //get Values
+  getName(){
+    return this.userName$$.value;
   }
 
   //Store

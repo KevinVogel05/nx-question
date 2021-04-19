@@ -11,6 +11,7 @@
             <p>Favourite Color: {{ data.currentFav$$ | async }}</p>
             <p>Gender: {{ data.currentGender$$ | async }}</p>
             <p>Finds the Survey super cool: {{ data.currentLike$$ | async }}</p>
+
             <p>Store data {{ answers$ | async | json}}</p>
         </div>
         <a class="lets-get-started" routerLink="/">Submit</a>

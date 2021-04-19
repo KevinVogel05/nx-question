@@ -16,7 +16,7 @@ export interface QuestionAppState{
 export const initialState: State = {
   answers: {
     name: 'init',
-    age: 4,
+    age: 0,
     intrests: 'init',
     hates: 'init',
     job: 'init',
@@ -26,6 +26,9 @@ export const initialState: State = {
   }
 };
 
+const newState = (state, newData) => {
+  return Object.assign({}, state, newData)
+}
 
 export const reducer = createReducer(
   initialState,
@@ -34,6 +37,15 @@ export const reducer = createReducer(
     const questions = action.answers;
     return { ...state, questions}
   }),
+  mutableOn(QuestionActions.updateAnswer, (state: State, action) => {
+    const answers = action.answer;
+    return { ...state, answers}
 
+    //V2
+    //return newState(state, answers);
+
+    //V3
+    //state.answers = action.answer;
+  }),
 );
 

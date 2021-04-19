@@ -1,5 +1,12 @@
+import { DatabaseService } from './../../../../services/database.service';
+import { updateAnswer } from './../../../../+state/question.actions';
+import { take } from 'rxjs/operators';
+import { selectAnswers } from './../../../../+state/question.selectors';
+import { QuestionAppState } from './../../../../+state/question.reducer';
 import { DataService } from './../../../../services/data.service';
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'question-fp-three',
@@ -11,13 +18,20 @@ export class FpThreeComponent implements OnInit {
   interests: string;
   hate: string;
   job: string;
+  answers$: Observable<any>
 
-  constructor(public data: DataService) { }
+  question1: any;
+  question2: any;
+  question3: any;
+
+
+  constructor(public data: DataService, public database: DatabaseService, private store: Store<QuestionAppState>) { }
 
   ngOnInit(): void {
-    //this.data.currentInterests$$.subscribe(input => this.interests = input);
-    //this.data.currentHate$$.subscribe(input => this.hate = input);
-    //this.data.currentJob$$.subscribe(input => this.job = input);
+    this.answers$ = this.store.select(selectAnswers);
+    this.question1 = this.database.loadQuestions(2);
+    this.question2 = this.database.loadQuestions(3);
+    this.question3 = this.database.loadQuestions(4);
   }
 
   onNext(userInterests){
@@ -31,5 +45,12 @@ export class FpThreeComponent implements OnInit {
   onNext3(userJob){
     this.job = userJob;
     this.data.changeJob(this.job);
+
+    //with Store
+    this.answers$.pipe(take(1)).subscribe(v => {
+      let answer = v;
+      let newAnswers = {...answer, intrests: this.interests, hates: this.hate, job: this.job };
+      this.store.dispatch(updateAnswer({answer: newAnswers}));
+    });
   }
 }

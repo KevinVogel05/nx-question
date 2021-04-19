@@ -4,6 +4,7 @@ import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/cor
 import { Answers } from '../../models/answer.model';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
+import { selectQuestionState } from '../../+state/question.selectors';
 
 @Component({
   selector: 'question-question-container',
@@ -24,12 +25,13 @@ export class QuestionContainerComponent implements OnInit {
     like: null
   };
 
-  answers$: Observable<Answers>
+  answers$: Observable<any>
 
   constructor(public data: DataService, private store: Store<QuestionAppState>) { }
 
   ngOnInit(): void {
-    this.answers$ = this.store.select(s => s.answers.answers);
+    //this.answers$ = this.store.select(s => s.answers.answers);
+    this.answers$ = this.store.select('answers');
   }
 
 }

@@ -1,3 +1,5 @@
+import { DatabaseService } from './services/database.service';
+import { DataService } from './services/data.service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
@@ -12,6 +14,7 @@ import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import * as fromQuestion from './+state/question.reducer';
 import { QuestionEffects } from './+state/question.effects';
+
 
 @NgModule({
   declarations: [
@@ -47,7 +50,10 @@ import { QuestionEffects } from './+state/question.effects';
     StoreModule.forFeature(fromQuestion.questionFeatureKey, fromQuestion.reducer),
     EffectsModule.forFeature([QuestionEffects])
   ],
-  providers: [],
+  providers: [
+    DataService,
+    DatabaseService
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
