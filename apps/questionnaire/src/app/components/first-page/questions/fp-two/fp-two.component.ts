@@ -1,3 +1,4 @@
+import { TranslateService } from './../../../../services/translate.service';
 import { DatabaseService } from './../../../../services/database.service';
 import { selectAnswers } from './../../../../+state/question.selectors';
 import { updateAnswer } from './../../../../+state/question.actions';
@@ -6,31 +7,40 @@ import { Store } from '@ngrx/store';
 import { initialState, QuestionAppState } from './../../../../+state/question.reducer';
 import { Answers } from './../../../../models/answer.model';
 import { DataService } from './../../../../services/data.service';
-import { Component, OnInit } from '@angular/core';
-import { Observable, ReplaySubject } from 'rxjs';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Observable, ReplaySubject, Subscription } from 'rxjs';
 
 @Component({
   selector: 'question-fp-two',
   templateUrl: './fp-two.component.html',
   styleUrls: ['./fp-two.component.css']
 })
-export class FpTwoComponent implements OnInit {
+export class FpTwoComponent implements OnInit, OnDestroy {
 
   age: number;
-  question: any;
   answers$: Observable<any>
+  language;
+  question;
+  subscriptionLanguage: Subscription;
 
-  // private answers: Observable<Answers>;
-  // private _answers$: ReplaySubject<Answers> = new ReplaySubject<Answers>();
-  // answers$: Observable<Answers> = this._answers$.asObservable();
-
-  constructor(public data: DataService, public database: DatabaseService, private store: Store<QuestionAppState>) { }
+  constructor(public data: DataService, public database: DatabaseService, public translate: TranslateService, private store: Store<QuestionAppState>) { }
 
   ngOnInit(): void {
-    //this.data.currentAge$$.subscribe(input => this.age = input);
-    //this._answers$.next();
     this.answers$ = this.store.select(selectAnswers);
-    this.question = this.database.loadQuestions(1);
+
+    // load language
+    this.language = this.translate.loadLanguage();
+    // load question and translate
+    this.question = this.translate.loadQuestion(1);
+    this.question = this.translate.translateQuestion(this.language);
+    // update language onChange
+    this.subscriptionLanguage = this.translate.getLanguageUpdate().subscribe(lang => {
+      this.language = lang;
+      this.question = this.translate.translateQuestion(this.language);
+    })
+  }
+  ngOnDestroy() {
+    this.subscriptionLanguage.unsubscribe();
   }
 
   onNext(userAge){

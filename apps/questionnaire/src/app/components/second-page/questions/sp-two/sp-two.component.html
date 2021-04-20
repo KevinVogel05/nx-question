@@ -1,5 +1,5 @@
 <div class="questions">
-    <p>{{ question.question}}</p>
+    <p>{{ question }}</p>
     <div *ngFor="let gender of genderChoice">
         <input type="radio" name="gender" value="{{gender}}" (change)="genderSelected($event)">
         <i>{{gender}}</i>

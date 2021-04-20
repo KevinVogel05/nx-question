@@ -17,17 +17,6 @@ import { selectQuestionState } from '../../+state/question.selectors';
 
 export class QuestionContainerComponent implements OnInit {
 
-  userInput: Answers = {
-    name: '',
-    age: null,
-    intrests: '',
-    hates: '',
-    job: '',
-    color: '',
-    gender: '',
-    like: null
-  };
-
   answers$: Observable<any>
 
   constructor(public data: DataService,public database: DatabaseService, private store: Store<QuestionAppState>) { }

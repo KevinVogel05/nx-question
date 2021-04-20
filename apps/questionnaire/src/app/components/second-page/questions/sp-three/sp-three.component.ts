@@ -1,9 +1,10 @@
+import { TranslateService } from './../../../../services/translate.service';
 import { DatabaseService } from './../../../../services/database.service';
 import { updateAnswer } from './../../../../+state/question.actions';
 import { take } from 'rxjs/operators';
 import { DataService } from './../../../../services/data.service';
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Observable, Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { QuestionAppState } from 'apps/questionnaire/src/app/+state/question.reducer';
 import { selectAnswers } from 'apps/questionnaire/src/app/+state/question.selectors';
@@ -13,22 +14,36 @@ import { selectAnswers } from 'apps/questionnaire/src/app/+state/question.select
   templateUrl: './sp-three.component.html',
   styleUrls: ['./sp-three.component.css']
 })
-export class SpThreeComponent implements OnInit {
+export class SpThreeComponent implements OnInit, OnDestroy {
 
   like: string;
   likes: boolean;
   answers$: Observable<any>;
-  question: any;
+  question;
+  language;
+  subscriptionLanguage: Subscription;
 
   public likeChoice:string[] =[
     'Yes',
     'No',
   ];
-  constructor(public data: DataService, public database: DatabaseService, private store: Store<QuestionAppState>) { }
+  constructor(public data: DataService, public database: DatabaseService, public translate: TranslateService, private store: Store<QuestionAppState>) { }
 
   ngOnInit(): void {
     this.answers$ = this.store.select(selectAnswers);
-    this.question = this.database.loadQuestions(7);
+    // load language
+    this.language = this.translate.loadLanguage();
+    // load question and translate
+    this.question = this.translate.loadQuestion(7);
+    this.question = this.translate.translateQuestion(this.language);
+    // update language onChange
+    this.subscriptionLanguage = this.translate.getLanguageUpdate().subscribe(lang => {
+      this.language = lang;
+      this.question = this.translate.translateQuestion(this.language);
+    })
+  }
+  ngOnDestroy() {
+    this.subscriptionLanguage.unsubscribe();
   }
 
   likeSelected(e){

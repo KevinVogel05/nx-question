@@ -1,3 +1,4 @@
+import { TranslateService } from './services/translate.service';
 import { DatabaseService } from './services/database.service';
 import { DataService } from './services/data.service';
 import { NgModule } from '@angular/core';
@@ -14,6 +15,7 @@ import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import * as fromQuestion from './+state/question.reducer';
 import { QuestionEffects } from './+state/question.effects';
+import { TranslateComponent } from './shared/translate/translate.component';
 
 
 @NgModule({
@@ -21,6 +23,7 @@ import { QuestionEffects } from './+state/question.effects';
     AppComponent,
     QuestionContainerComponent,
     HeroComponent,
+    TranslateComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,7 +55,8 @@ import { QuestionEffects } from './+state/question.effects';
   ],
   providers: [
     DataService,
-    DatabaseService
+    DatabaseService,
+    TranslateService
   ],
   bootstrap: [AppComponent],
 })

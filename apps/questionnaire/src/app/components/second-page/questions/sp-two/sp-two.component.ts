@@ -1,10 +1,11 @@
+import { TranslateService } from './../../../../services/translate.service';
 import { DatabaseService } from './../../../../services/database.service';
 import { updateAnswer } from './../../../../+state/question.actions';
 import { take } from 'rxjs/operators';
 import { selectAnswers } from './../../../../+state/question.selectors';
 import { DataService } from './../../../../services/data.service';
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Observable, Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { QuestionAppState } from 'apps/questionnaire/src/app/+state/question.reducer';
 
@@ -13,11 +14,13 @@ import { QuestionAppState } from 'apps/questionnaire/src/app/+state/question.red
   templateUrl: './sp-two.component.html',
   styleUrls: ['./sp-two.component.scss']
 })
-export class SpTwoComponent implements OnInit {
+export class SpTwoComponent implements OnInit, OnDestroy {
 
   public gender: string;
   answers$: Observable<any>
-  question: any;
+  question;
+  language;
+  subscriptionLanguage: Subscription;
 
   public genderChoice:string[] =[
     'Male',
@@ -25,13 +28,24 @@ export class SpTwoComponent implements OnInit {
     'Other'
   ];
 
-  constructor(public data: DataService, public database: DatabaseService, private store: Store<QuestionAppState>) { }
+  constructor(public data: DataService, public database: DatabaseService, public translate: TranslateService, private store: Store<QuestionAppState>) { }
 
   ngOnInit(): void {
     this.answers$ = this.store.select(selectAnswers);
-    this.question = this.database.loadQuestions(6);
+    // load language
+    this.language = this.translate.loadLanguage();
+    // load question and translate
+    this.question = this.translate.loadQuestion(6);
+    this.question = this.translate.translateQuestion(this.language);
+    // update language onChange
+    this.subscriptionLanguage = this.translate.getLanguageUpdate().subscribe(lang => {
+      this.language = lang;
+      this.question = this.translate.translateQuestion(this.language);
+    })
   }
-
+  ngOnDestroy() {
+    this.subscriptionLanguage.unsubscribe();
+  }
   genderSelected(e){
     this.gender = e.target.value;
     this.data.changeGender(this.gender);

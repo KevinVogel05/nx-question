@@ -7,42 +7,50 @@ export class DatabaseService {
   questions = [
         {
             "id": "1",
-            "question": "What is your Name?",
+            "en": "What is your Name?",
+            "de": "Wie heißt du?",
             "answer": ""
         },
         {
             "id": "2",
-            "question": "How old are you?",
+            "en": "How old are you?",
+            "de": "Wie alt bist du?",
             "answer": ""
         },
         {
             "id": "3",
-            "question": "What intrests you?",
+            "en": "What are your intrests?",
+            "de": "Was sind deine Interessen?",
             "answer": ""
         },
         {
             "id": "4",
-            "question": "What do you hate?",
+            "en": "What do you hate?",
+            "de": "Was hasst du?",
             "answer": ""
         },
         {
             "id": "5",
-            "question": "What is your job?",
+            "en": "What is your job?",
+            "de": "Was machst du Beruflich?",
             "answer": ""
         },
         {
             "id": "6",
-            "question": "What is your favourite color?",
+            "en": "What is your favourite color?",
+            "de": "Was ist deine Lieblingsfarbe?",
             "answer": ""
         },
         {
             "id": "7",
-            "question": "What are you?",
+            "en": "What are you?",
+            "de": "Was bist du?",
             "answer": ""
         },
         {
             "id": "8",
-            "question": "Did you like the Survey?",
+            "en": "Did you like the Survey?",
+            "de": "Hat dir die Umfrage gefallen?",
             "answer": ""
         }
   ];
@@ -50,11 +58,12 @@ export class DatabaseService {
 
   constructor() { }
 
+  //load from fake 'Database'
   loadQuestions(i){
-    //load from fake 'Database'
     return this.questions[i]
   }
 
+  //load Answers
   loadAnswers(i){
     console.log('loadAnswers: ', i)
 
@@ -68,7 +77,6 @@ export class DatabaseService {
     this.questions[7].answer = i.like;
 
     console.log('value: ', this.questions)
-
     //send data to databse...
   }
 }

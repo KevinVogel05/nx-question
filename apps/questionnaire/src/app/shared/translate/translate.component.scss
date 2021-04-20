@@ -1,0 +1,24 @@
+.language {
+    height: 3vh;
+    display: flex;
+    justify-content: flex-end;
+    background: unset;
+    background-color: #6e00ff;
+    color: white;
+    text-align: center;
+    padding: 1em;
+}
+
+select {
+    width: auto;
+    height: auto;
+    font-size: 16px;
+    background-color: #ffffff2a;
+    color: white;
+    border: none;
+    border-radius: 2em;
+    float: right;
+    &:focus {
+        color: #ff64cb;
+    }
+}
