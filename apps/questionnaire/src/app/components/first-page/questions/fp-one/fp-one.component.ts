@@ -21,12 +21,13 @@ export class FpOneComponent implements OnInit, OnDestroy {
   question;
   language;
   subscriptionLanguage: Subscription;
-
   // private answers: Observable<Answers>;
   // private _answers$: ReplaySubject<Answers> = new ReplaySubject<Answers>();
   // answers$: Observable<Answers> = this._answers$.asObservable();
 
-  constructor(public data: DataService, public database: DatabaseService, public translate: TranslateService, public store: Store<QuestionAppState>) {}
+  constructor(public data: DataService, public database: DatabaseService, public translate: TranslateService, public store: Store<QuestionAppState>) {
+
+  }
 
   ngOnInit(): void {
     //this.data.currentName$$.subscribe(input => this.name = input);
@@ -37,7 +38,6 @@ export class FpOneComponent implements OnInit, OnDestroy {
 
     // load questions without store
     //this.question = this.database.loadQuestions(0);
-
 
     // load language
     this.language = this.translate.loadLanguage();
@@ -67,6 +67,17 @@ export class FpOneComponent implements OnInit, OnDestroy {
       let newAnswers = {...answer, name: newAnswer };
       this.store.dispatch(updateAnswer({answer: newAnswers}));
     });
+  }
 
+  onChange(userName){
+    this.name = userName;
+    //with Store
+    this.answers$ = this.store.select(selectAnswers);
+    this.answers$.pipe(take(1)).subscribe(v => {
+      let answer = v;
+      let newAnswer = this.name;
+      let newAnswers = {...answer, name: newAnswer };
+      this.store.dispatch(updateAnswer({answer: newAnswers}));
+    });
   }
 }

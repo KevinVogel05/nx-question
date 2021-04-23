@@ -1,3 +1,4 @@
+import { TranslateComponent } from './../../../../shared/translate/translate.component';
 import { TranslateService } from './../../../../services/translate.service';
 import { DatabaseService } from './../../../../services/database.service';
 import { selectAnswers } from './../../../../+state/question.selectors';

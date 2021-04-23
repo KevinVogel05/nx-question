@@ -1,5 +1,5 @@
 <div class="questions">
     <p>{{ question }}</p>
-    <input #name type="text">
+    <input #name type="text" (change)="onChange(name.value)">
 </div>
 <a (click)=onNext(name.value) class="lets-get-started" routerLink="../2">Next<i class="arrow right"></i></a>

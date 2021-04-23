@@ -23,4 +23,8 @@ export class TranslateComponent implements OnInit {
     this.translate.updateLanguage(this.lang);
   }
 
+  test(){
+    console.log('testing availability')
+  }
+
 }

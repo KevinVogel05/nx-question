@@ -1,3 +1,4 @@
+import { Questions } from './../models/questions.model';
 import { selectLanguage } from './../+state/question.selectors';
 import { loadQuestions, updateLanguage } from './../+state/question.actions';
 import { DatabaseService } from './database.service';
@@ -14,7 +15,7 @@ export class TranslateService{
 
   question$: Observable<any>;
   lang$: Observable<any>;
-  question;
+  question: Questions;
   questionTranslated: string;
   lang: string = 'en';
   private _lang$$ = new Subject<any>();

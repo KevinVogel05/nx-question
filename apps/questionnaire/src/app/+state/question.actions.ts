@@ -2,6 +2,8 @@ import { Questions } from './../models/questions.model';
 import { Answers } from './../models/answer.model';
 import { createAction, props } from '@ngrx/store';
 
+export const appLoaded = createAction('[App] App Loaded');
+
 export const loadQuestions = createAction(
   '[Question] Load Questions',
   props<{question: any}>()

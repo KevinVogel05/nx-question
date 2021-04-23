@@ -1,10 +1,17 @@
+import { provideMockStore, MockStore } from '@ngrx/store/testing';
+import { Store } from '@ngrx/store';
 import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
+  let store: MockStore;
+  const initialState = { };
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [AppComponent],
+      providers: [
+        provideMockStore({initialState})
+      ]
     }).compileComponents();
   });
 
