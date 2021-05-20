@@ -18,6 +18,8 @@
     "questionnaire-e2e": {
       "tags": [],
       "implicitDependencies": ["questionnaire"]
-    }
+    },
+    "charts": { "tags": [] },
+    "charts-e2e": { "tags": [], "implicitDependencies": ["charts"] }
   }
 }

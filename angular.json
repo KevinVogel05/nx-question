@@ -70,13 +70,8 @@
             "polyfills": "apps/hero/src/polyfills.ts",
             "tsConfig": "apps/hero/tsconfig.app.json",
             "aot": true,
-            "assets": [
-              "apps/hero/src/favicon.ico",
-              "apps/hero/src/assets"
-            ],
-            "styles": [
-              "apps/hero/src/styles.scss"
-            ],
+            "assets": ["apps/hero/src/favicon.ico", "apps/hero/src/assets"],
+            "styles": ["apps/hero/src/styles.scss"],
             "scripts": []
           },
           "configurations": {
@@ -134,17 +129,12 @@
               "apps/hero/tsconfig.spec.json",
               "apps/hero/tsconfig.editor.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/hero/**/*"
-            ]
+            "exclude": ["**/node_modules/**", "!apps/hero/**/*"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/apps/hero"
-          ],
+          "outputs": ["coverage/apps/hero"],
           "options": {
             "jestConfig": "apps/hero/jest.config.js",
             "passWithNoTests": true
@@ -173,13 +163,8 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "apps/hero-e2e/tsconfig.e2e.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/hero-e2e/**/*"
-            ]
+            "tsConfig": ["apps/hero-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/hero-e2e/**/*"]
           }
         }
       }
@@ -203,9 +188,7 @@
               "apps/questionnaire/src/favicon.ico",
               "apps/questionnaire/src/assets"
             ],
-            "styles": [
-              "apps/questionnaire/src/styles.scss"
-            ],
+            "styles": ["apps/questionnaire/src/styles.scss"],
             "scripts": []
           },
           "configurations": {
@@ -263,17 +246,12 @@
               "apps/questionnaire/tsconfig.spec.json",
               "apps/questionnaire/tsconfig.editor.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/questionnaire/**/*"
-            ]
+            "exclude": ["**/node_modules/**", "!apps/questionnaire/**/*"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/apps/questionnaire"
-          ],
+          "outputs": ["coverage/apps/questionnaire"],
           "options": {
             "jestConfig": "apps/questionnaire/jest.config.js",
             "passWithNoTests": true
@@ -302,13 +280,122 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
+            "tsConfig": ["apps/questionnaire-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/questionnaire-e2e/**/*"]
+          }
+        }
+      }
+    },
+    "charts": {
+      "projectType": "application",
+      "root": "apps/charts",
+      "sourceRoot": "apps/charts/src",
+      "prefix": "question",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/charts",
+            "index": "apps/charts/src/index.html",
+            "main": "apps/charts/src/main.ts",
+            "polyfills": "apps/charts/src/polyfills.ts",
+            "tsConfig": "apps/charts/tsconfig.app.json",
+            "aot": true,
+            "assets": ["apps/charts/src/favicon.ico", "apps/charts/src/assets"],
+            "styles": ["apps/charts/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/charts/src/environments/environment.ts",
+                  "with": "apps/charts/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "charts:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "charts:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "charts:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
             "tsConfig": [
-              "apps/questionnaire-e2e/tsconfig.e2e.json"
+              "apps/charts/tsconfig.app.json",
+              "apps/charts/tsconfig.spec.json",
+              "apps/charts/tsconfig.editor.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/questionnaire-e2e/**/*"
-            ]
+            "exclude": ["**/node_modules/**", "!apps/charts/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/charts"],
+          "options": {
+            "jestConfig": "apps/charts/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "charts-e2e": {
+      "root": "apps/charts-e2e",
+      "sourceRoot": "apps/charts-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/charts-e2e/cypress.json",
+            "tsConfig": "apps/charts-e2e/tsconfig.e2e.json",
+            "devServerTarget": "charts:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "charts:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["apps/charts-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/charts-e2e/**/*"]
           }
         }
       }

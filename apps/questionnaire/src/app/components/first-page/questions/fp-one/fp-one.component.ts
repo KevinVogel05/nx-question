@@ -76,8 +76,11 @@ export class FpOneComponent implements OnInit, OnDestroy {
     this.answers$.pipe(take(1)).subscribe(v => {
       let answer = v;
       let newAnswer = this.name;
-      let newAnswers = {...answer, name: newAnswer };
+      let newAnswers = {...answer, name: 'newAnswer' };
       this.store.dispatch(updateAnswer({answer: newAnswers}));
     });
+    this.store.pipe(select(selectAnswers), take(1)).subscribe((data)=>{
+      console.log('TESTING: ', data.name)
+    })
   }
 }
